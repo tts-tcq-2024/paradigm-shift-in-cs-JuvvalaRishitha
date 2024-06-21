@@ -5,7 +5,7 @@ namespace paradigm_shift_csharp
 class Checker
 {
     static bool batteryIsOk(float temperature, float soc, float chargeRate) {
-        return(isTemperatureOk && isSocOk && is ChargeRateOk)
+        return(isTemperatureOk && isSocOk && is ChargeRateOk);
     }
 
     static bool isTemperatureOk(float temperature)
