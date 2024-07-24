@@ -14,9 +14,14 @@ namespace Checker
         /// <returns>True if the temperature is within the range, otherwise false.</returns>
         public bool Check(float temperature)
         {
-            if (temperature < 0 || temperature > 45)
+            if (temperature < 0)
             {
-                _errorMessage = "Temperature is out of range!";
+                _errorMessage = "Temperature is too low!";
+                return false;
+            }
+            if (temperature > 45)
+            {
+                _errorMessage = "Temperature is too high!";
                 return false;
             }
             return true;
