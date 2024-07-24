@@ -16,7 +16,7 @@ namespace Checker
         {
             if (chargeRate > 0.8)
             {
-                _errorMessage = "Charge Rate is out of range!";
+                _errorMessage = "Charge Rate is too high!";
                 return false;
             }
             return true;
