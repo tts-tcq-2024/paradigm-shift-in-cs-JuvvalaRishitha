@@ -8,7 +8,7 @@ namespace Checker
         private readonly IBatteryCheck _temperatureCheck = new TemperatureCheck();
         private readonly IBatteryCheck _socCheck = new SocCheck();
         private readonly IBatteryCheck _chargeRateCheck = new ChargeRateCheck();
-        private readonly IBatteryCheck _voltageCheck = new VoltageCheck(); 
+        private readonly IBatteryCheck _voltageCheck = new VoltageCheck(); // Add voltage check
 
         /// <summary>
         /// Checks if the battery is in good condition based on multiple parameters.
@@ -20,12 +20,34 @@ namespace Checker
         /// <returns>True if all parameters are within the acceptable range, otherwise false.</returns>
         public bool IsBatteryInGoodCondition(float temperature, float stateOfCharge, float chargeRate, float voltage)
         {
-            bool isTemperatureValid = ValidateCheck(_temperatureCheck, temperature);
-            bool isSocValid = ValidateCheck(_socCheck, stateOfCharge);
-            bool isChargeRateValid = ValidateCheck(_chargeRateCheck, chargeRate);
-            bool isVoltageValid = ValidateCheck(_voltageCheck, voltage); // Validate voltage
+            bool isValid = true;
 
-            return isTemperatureValid && isSocValid && isChargeRateValid && isVoltageValid; // Include voltage check in the final validation
+            isValid &= ValidateTemperature(temperature);
+            isValid &= ValidateStateOfCharge(stateOfCharge);
+            isValid &= ValidateChargeRate(chargeRate);
+            isValid &= ValidateVoltage(voltage);
+
+            return isValid;
+        }
+
+        private bool ValidateTemperature(float temperature)
+        {
+            return ValidateCheck(_temperatureCheck, temperature);
+        }
+
+        private bool ValidateStateOfCharge(float stateOfCharge)
+        {
+            return ValidateCheck(_socCheck, stateOfCharge);
+        }
+
+        private bool ValidateChargeRate(float chargeRate)
+        {
+            return ValidateCheck(_chargeRateCheck, chargeRate);
+        }
+
+        private bool ValidateVoltage(float voltage)
+        {
+            return ValidateCheck(_voltageCheck, voltage);
         }
 
         /// <summary>
