@@ -8,7 +8,7 @@ namespace Checker
         private readonly IBatteryCheck _temperatureCheck = new TemperatureCheck();
         private readonly IBatteryCheck _socCheck = new SocCheck();
         private readonly IBatteryCheck _chargeRateCheck = new ChargeRateCheck();
-        private readonly IBatteryCheck _voltageCheck = new VoltageCheck(); // Add voltage check
+        private readonly IBatteryCheck _voltageCheck = new VoltageCheck(); 
 
         /// <summary>
         /// Checks if the battery is in good condition based on multiple parameters.
